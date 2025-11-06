@@ -1,0 +1,26 @@
+"""Given an unsorted integer array nums. Return the smallest positive integer that is not present in nums.
+
+You must implement an algorithm that runs in O(n) time and uses O(1) auxiliary space."""
+
+
+class Solution(object):
+    def firstMissingPositive(self, nums):
+        nums = list(set(nums))
+        nums = sorted(nums)
+
+        h = []
+        for i in nums:
+            if i > 0:
+                h.append(i)
+
+        if not h:
+            return 1
+
+        if h[0] != 1:
+            return 1
+
+        for i in range(len(h) - 1):
+            if h[i + 1] != h[i] + 1:
+                return h[i] + 1
+
+        return h[-1] + 1
